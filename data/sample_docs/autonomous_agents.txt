@@ -1,0 +1,76 @@
+Autonomous Agents: Architecture, Design, and Applications
+
+What Is an Autonomous Agent?
+
+An autonomous agent is a software system capable of perceiving its environment, making decisions, and taking actions to achieve defined goals — without requiring constant human guidance. The term originates in multi-agent systems research but has been reinvigorated by the rise of large language models (LLMs) that can plan, reason, and use tools.
+
+Core Components
+
+An autonomous agent typically consists of four components:
+
+1. Perception — the agent receives inputs from its environment. For an LLM-based agent this includes the user's question, outputs from previous tool calls, and retrieved documents from a knowledge base.
+
+2. Memory — the agent maintains context across reasoning steps. Short-term memory is the conversation or reasoning trace held in the LLM's context window. Long-term memory is an external store (e.g., a vector database) that persists knowledge beyond a single session.
+
+3. Reasoning / Planning — the agent decides which action to take next. The most common paradigm for LLM agents is ReAct (Reason + Act), where the model alternates between writing a Thought explaining its reasoning and issuing an Action (tool call).
+
+4. Action — the agent executes tools such as web search, code execution, file reading/writing, API calls, or database queries, then observes the result and continues reasoning.
+
+The ReAct Framework
+
+ReAct, introduced by Yao et al. (2022), structures agent reasoning as a sequence of Thought → Action → Observation cycles. The model writes a natural language thought, emits a structured tool call, receives the tool's output as an observation, and repeats until it can produce a Final Answer. This interleaving of reasoning and acting allows the agent to incorporate new evidence at each step and self-correct errors.
+
+A key advantage of ReAct over chain-of-thought reasoning alone is that the agent can access external, up-to-date information rather than relying entirely on knowledge baked into the model's weights.
+
+Tool Use
+
+Modern agents are typically equipped with a set of tools. Common tools include:
+
+- Web search: retrieves real-time information from the internet.
+- Code interpreter: executes Python code and returns the output.
+- Calculator: performs precise arithmetic to avoid LLM numerical errors.
+- Knowledge base retrieval (RAG): searches a local vector database for domain-specific documents.
+- File system access: reads and writes files.
+- API connectors: interacts with external services (weather, stock prices, databases).
+
+The agent selects tools based on its reasoning trace. Providing clear, consistent tool descriptions in the system prompt is critical for reliable tool selection.
+
+Memory Systems
+
+Short-term (in-context) memory holds the agent's reasoning trace, tool results, and conversation history within the LLM's context window. Once the context window is full, older content must be compressed or evicted.
+
+Long-term memory externalises knowledge to a persistent store. Vector databases (ChromaDB, Pinecone, Weaviate, FAISS) store text chunks as embedding vectors, enabling semantic similarity search. An agent can retrieve the most relevant chunks for a given query and inject them into its context — this is the basis of Retrieval-Augmented Generation (RAG).
+
+Episodic memory stores records of past agent sessions, allowing the agent to recall what it did in previous conversations or tasks.
+
+Planning and Multi-Step Tasks
+
+Simple agents execute a single ReAct loop. More complex architectures use hierarchical planning: a high-level planner decomposes a goal into sub-tasks, and specialised sub-agents (or tool calls) execute each sub-task. Frameworks such as LangGraph, AutoGen, and CrewAI support multi-agent orchestration where agents can delegate to one another, critique each other's outputs, and collaborate to solve tasks that are too complex for a single agent.
+
+Challenges and Limitations
+
+Hallucination: LLM-based agents can fabricate facts, tool names, or observations. Grounding the agent in a retrieved knowledge base (RAG) mitigates but does not eliminate this.
+
+Infinite loops: without a maximum iteration limit the agent can loop indefinitely, consuming tokens and time without making progress.
+
+Tool errors: tools can fail (network timeout, invalid input). Robust agents should catch exceptions and incorporate the error message as an observation so the model can recover.
+
+Context window limits: long reasoning traces consume tokens. Agents on tasks requiring many steps must compress or truncate earlier context, risking loss of important information.
+
+Safety and alignment: an autonomous agent executing actions in the real world (sending emails, modifying files) must be constrained carefully to prevent unintended or harmful actions.
+
+Practical Applications
+
+Customer support: agents that retrieve FAQ documents, escalate to humans when confidence is low, and update ticketing systems autonomously.
+
+Research assistance: agents that search the web and internal knowledge bases, synthesise findings, and generate structured reports.
+
+Software development: coding agents (e.g., Devin, GitHub Copilot Workspace) that write, run, and debug code iteratively based on test output.
+
+Data analysis: agents that load datasets, write and run analysis code, interpret results, and produce visualisations.
+
+Robotic process automation (RPA): agents that navigate UIs, fill forms, and extract data from legacy systems without API access.
+
+Future Directions
+
+Research is moving towards agents with persistent identity that learn and improve over time, multi-agent societies where specialised agents collaborate on complex tasks, and tighter integration of reasoning with physical-world perception for embodied AI. Improving reliability, reducing hallucination, and ensuring safe autonomy remain the central open problems in the field.

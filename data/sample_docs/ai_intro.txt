@@ -1,0 +1,39 @@
+Introduction to Artificial Intelligence
+
+Artificial Intelligence (AI) is a branch of computer science focused on building systems that can perform tasks that typically require human intelligence. These tasks include understanding natural language, recognising images, making decisions, translating languages, and playing complex games.
+
+History of AI
+
+The field of AI was formally founded at the Dartmouth Conference in 1956, where researchers including John McCarthy, Marvin Minsky, Claude Shannon, and Nathaniel Rochester coined the term and outlined the core ambitions of the discipline. Early AI research focused on symbolic reasoning and problem-solving using hand-crafted rules.
+
+In the 1980s, expert systems — software encoding domain knowledge as if-then rules — became commercially successful. However, their brittleness and high maintenance cost led to an "AI winter," a period of reduced funding and interest.
+
+The resurgence of AI began in the 2000s with the rise of machine learning: instead of programming explicit rules, systems learn patterns from large datasets. This culminated in the deep learning revolution of the 2010s, driven by increased computing power (GPUs), the availability of massive labelled datasets, and advances in neural network architectures.
+
+Key Subfields
+
+Machine Learning (ML) enables systems to learn from data without being explicitly programmed. Supervised learning trains models on labelled examples; unsupervised learning discovers hidden structure in unlabelled data; reinforcement learning trains agents through trial-and-error interactions with an environment.
+
+Natural Language Processing (NLP) deals with understanding and generating human language. Applications include sentiment analysis, machine translation, question answering, and text summarisation. Modern NLP is dominated by transformer-based models such as BERT, GPT, and T5.
+
+Computer Vision enables machines to interpret visual information from images and videos. Core tasks include image classification, object detection, semantic segmentation, and facial recognition. Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs) are the dominant architectures.
+
+Robotics integrates AI with physical systems, enabling machines to perceive their environment, plan actions, and execute them. Applications range from industrial automation to surgical robots and autonomous vehicles.
+
+Large Language Models (LLMs)
+
+Large Language Models are neural networks trained on vast corpora of text using self-supervised objectives. Models such as GPT-4, Claude, Gemini, and LLaMA can generate coherent long-form text, answer questions, write code, summarise documents, and engage in multi-turn dialogue. LLMs are pre-trained on general data and then fine-tuned or prompted for specific downstream tasks.
+
+A key property of LLMs is in-context learning: given a few examples in the prompt (few-shot prompting), the model adapts its behaviour without any weight updates. Instruction tuning and Reinforcement Learning from Human Feedback (RLHF) further align LLMs to follow user intent safely and helpfully.
+
+Retrieval-Augmented Generation (RAG)
+
+RAG is a technique that combines LLMs with external knowledge retrieval. Instead of relying solely on knowledge baked into model weights, a RAG system retrieves relevant documents from a vector database at query time and appends them to the LLM's context. This reduces hallucinations, keeps knowledge up to date without retraining, and makes answers verifiable through source attribution.
+
+Ethical Considerations
+
+AI raises important ethical questions around bias and fairness (models trained on biased data perpetuate that bias), transparency and explainability (complex models are often black boxes), privacy (large-scale data collection raises consent issues), and safety (misaligned AI systems could pursue goals harmful to humans). Researchers and policymakers are actively working on frameworks for responsible AI development.
+
+Current Trends
+
+Multimodal AI systems can jointly process text, images, audio, and video. Agents — AI systems that autonomously plan and execute multi-step tasks using tools — are a rapidly growing area. Efficient inference techniques such as quantisation, distillation, and speculative decoding are making powerful models deployable on consumer hardware.
